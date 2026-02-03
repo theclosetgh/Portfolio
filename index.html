@@ -14,8 +14,8 @@
 }
 
 body {
-  background: #0f172a;
-  color: #e5e7eb;
+  background: #f8fafc;
+  color: #0f172a;
   line-height: 1.6;
 }
 
@@ -23,34 +23,43 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(15,23,42,0.9);
+  background: rgba(255,255,255,0.9);
   backdrop-filter: blur(10px);
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 header h2 {
-  color: #38bdf8;
+  color: #2563eb;
 }
 
 nav a {
-  color: #e5e7eb;
+  color: #0f172a;
   margin-left: 20px;
   text-decoration: none;
-  transition: 0.3s;
+  font-weight: 500;
 }
 
 nav a:hover {
-  color: #38bdf8;
+  color: #2563eb;
 }
 
 section {
-  padding: 100px 40px;
+  padding: 120px 40px;
   max-width: 1100px;
   margin: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero {
@@ -64,19 +73,20 @@ section {
 }
 
 .hero span {
-  color: #38bdf8;
+  color: #2563eb;
 }
 
 .hero p {
   max-width: 650px;
   margin: 20px 0;
+  color: #334155;
 }
 
 .btn {
   display: inline-block;
   padding: 12px 25px;
-  background: #38bdf8;
-  color: #0f172a;
+  background: #2563eb;
+  color: #ffffff;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -90,9 +100,10 @@ section {
 }
 
 .card {
-  background: #020617;
+  background: #ffffff;
   padding: 25px;
   border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
   transition: transform 0.3s;
 }
 
@@ -107,18 +118,19 @@ section {
 .card p {
   font-size: 14px;
   margin-bottom: 12px;
-  color: #cbd5f5;
+  color: #475569;
 }
 
 .card a {
-  color: #38bdf8;
+  color: #2563eb;
   text-decoration: none;
   font-size: 14px;
 }
 
 .skills span {
   display: inline-block;
-  background: #020617;
+  background: #e0e7ff;
+  color: #1e3a8a;
   padding: 8px 15px;
   margin: 5px;
   border-radius: 20px;
@@ -128,7 +140,7 @@ section {
 footer {
   text-align: center;
   padding: 40px;
-  color: #94a3b8;
+  color: #64748b;
 }
 </style>
 </head>
@@ -149,10 +161,9 @@ footer {
   <div>
     <h1>Hello, I'm <span>Edric Atebi Bakibaga</span></h1>
     <p>
-      Remote-ready IT / Web Developer focused on building real-world solutions
-      such as booking platforms and e-commerce websites for businesses.
+      Remote-ready IT / Web Developer focused on building business solutions
+      such as booking platforms and e-commerce websites.
     </p>
-
     <a href="#projects" class="btn">View My Work</a>
     <a href="Edric_Atebi_Bakibaga_Resume.pdf" download class="btn">
       Download Resume
@@ -166,32 +177,20 @@ footer {
 
     <div class="card">
       <h3>Linmart Executive Hostel</h3>
-      <p>
-        Hostel booking website that allows users to view rooms and make reservations online.
-      </p>
-      <a href="https://linmartexecutivehostel.com" target="_blank">
-        Visit Website →
-      </a>
+      <p>Hostel booking website for room reservations.</p>
+      <a href="https://linmartexecutivehostel.com" target="_blank">Visit Website →</a>
     </div>
 
     <div class="card">
       <h3>The Closet GH</h3>
-      <p>
-        Fashion e-commerce website built for online shopping and product management.
-      </p>
-      <a href="https://theclosetgh.com" target="_blank">
-        Visit Website →
-      </a>
+      <p>Fashion e-commerce website for online shopping.</p>
+      <a href="https://theclosetgh.com" target="_blank">Visit Website →</a>
     </div>
 
     <div class="card">
       <h3>Flavour Hub Shawarma</h3>
-      <p>
-        Online food ordering platform designed for fast and simple customer orders.
-      </p>
-      <a href="https://flavourhubs.com" target="_blank">
-        Visit Website →
-      </a>
+      <p>Online food ordering platform.</p>
+      <a href="https://flavourhubs.com" target="_blank">Visit Website →</a>
     </div>
 
   </div>
@@ -204,9 +203,8 @@ footer {
     <span>CSS</span>
     <span>JavaScript</span>
     <span>Remote IT Support</span>
-    <span>E-commerce Development</span>
+    <span>E-commerce</span>
     <span>Booking Systems</span>
-    <span>Website Deployment</span>
   </div>
 </section>
 
@@ -220,6 +218,20 @@ footer {
 <footer>
   © 2026 Edric Atebi Bakibaga. All rights reserved.
 </footer>
+
+<script>
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.15 });
+
+sections.forEach(section => observer.observe(section));
+</script>
 
 </body>
 </html>
